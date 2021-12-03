@@ -2,15 +2,9 @@ import sys
 
 with open(sys.argv[1]) as f:
     data = f.readlines()
+    data = [int(d) for d in data]
 
-
-prev = None
-count = 0
-for d in data:
-    d = int(d)
-    if prev is not None and d - prev > 0:
-        count += 1
-    prev = d
+count = sum(True for f, s in zip(data, data[1:]) if s - f > 0)
 
 print(count)
 
